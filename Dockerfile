@@ -13,16 +13,20 @@ RUN apt-get update && \
         php5-curl \
         php-pear \
         php-apc && \
+    apt-get -yq dist-upgrade && \
     rm -rf /var/lib/apt/lists/*
-RUN sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2/php.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add image configuration and scripts
+# Add files and set permissions
+ADD php.ini /etc/php/apache2/php.ini
 ADD run.sh /run.sh
 RUN chmod 755 /*.sh
-
-# Configure /app folder with sample app
-RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
+RUN touch /var/log/apache2/php_errors.log && \
+    chmod 777 /var/log/apache2/php_errors.log
+RUN mkdir -p /app && \
+    rm -fr /var/www/html && \
+    ln -s /app /var/www/html && \
+    chown www-data:www-data /app -R
 
 EXPOSE 80
 WORKDIR /app
