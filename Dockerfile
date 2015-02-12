@@ -22,7 +22,7 @@ RUN apt-get update && \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Add files and set permissions
-ADD php.ini /etc/php/apache2/php.ini
+ADD php.ini /etc/php5/apache2/php.ini
 ADD run.sh /run.sh
 RUN chmod 755 /*.sh
 RUN touch /var/log/apache2/php_errors.log && \
