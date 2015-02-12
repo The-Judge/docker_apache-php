@@ -5,15 +5,18 @@ MAINTAINER Marc Richter <mr@in-telegence.net>
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get -yq install \
-        curl \
         apache2 \
+        curl \
         libapache2-mod-php5 \
-        php5-mysql \
-        php5-gd \
         php5-curl \
-        php-pear \
+        php5-cli \
+        php5-gd \
+        php5-ldap \
+        php5-mysql \
+        php5-snmp \
         php-apc \
-	postfix && \
+        php-pear \
+    postfix && \
     apt-get -yq dist-upgrade && \
     rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -32,4 +35,3 @@ RUN mkdir -p /app && \
 EXPOSE 80
 WORKDIR /app
 CMD ["/run.sh"]
-
