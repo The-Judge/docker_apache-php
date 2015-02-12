@@ -21,6 +21,7 @@ RUN apt-get update && \
     apt-get -yq dist-upgrade && \
     rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN php5enmod mcrypt
 
 # Add files and set permissions
 ADD php.ini /etc/php5/apache2/php.ini
