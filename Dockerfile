@@ -12,6 +12,7 @@ RUN apt-get update && \
         php5-cli \
         php5-gd \
         php5-ldap \
+        php5-mcrypt \
         php5-mysql \
         php5-snmp \
         php-apc \
