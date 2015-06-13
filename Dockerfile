@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER Marc Richter <mr@in-telegence.net>
+MAINTAINER Marc Richter <mail@marc-richter.info>
 
 # Install base packages
 ENV DEBIAN_FRONTEND noninteractive
