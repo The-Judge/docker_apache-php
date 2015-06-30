@@ -35,6 +35,9 @@ RUN mkdir -p /app && \
     ln -s /app /var/www/html && \
     chown www-data:www-data /app -R
 
+# Add custom apache2.conf (mainly to set 'AllowOverride all')
+ADD apache2.conf /etc/apache2/apache2.conf
+
 EXPOSE 80
 WORKDIR /app
 CMD ["/run.sh"]
