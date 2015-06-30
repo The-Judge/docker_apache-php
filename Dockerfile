@@ -7,11 +7,14 @@ RUN apt-get update && \
     apt-get -yq install \
         apache2 \
         curl \
+        gettext \
+        imagemagick \
         libapache2-mod-php5 \
         mysql-client \
         php5-curl \
         php5-cli \
         php5-gd \
+        php-gettext \
         php5-ldap \
         php5-mcrypt \
         php5-mysql \
@@ -37,6 +40,12 @@ RUN mkdir -p /app && \
 
 # Add custom apache2.conf (mainly to set 'AllowOverride all')
 ADD apache2.conf /etc/apache2/apache2.conf
+
+# Enable Apache mod rewrite
+RUN a2enmod rewrite
+
+# Generate all locales
+RUN locale-gen $(cat /usr/share/i18n/SUPPORTED | cut -d ' ' -f 1)
 
 EXPOSE 80
 WORKDIR /app
