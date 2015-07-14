@@ -21,7 +21,8 @@ RUN apt-get update && \
         php5-snmp \
         php-apc \
         php-pear \
-        postfix && \
+        postfix \
+        unzip && \
     apt-get -yq dist-upgrade && \
     rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
